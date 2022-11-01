@@ -11,10 +11,14 @@ class TopNewsTableViewCell: UITableViewCell {
 
    static let identifier = "TopNewsTableViewCell"
     
+    //private var title: [News] = [News]()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Test some topic of news"
-       //TODO: - Сделать перенос строки?
+        //label.text = "Test some topic of news nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+       //TODO: - Сделать красивый перенос строки
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -65,7 +69,8 @@ class TopNewsTableViewCell: UITableViewCell {
         
         let titleLabelConstraints = [
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 26),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 27)
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 27),
+            titleLabel.trailingAnchor.constraint(equalTo: titlePosterImage.leadingAnchor, constant: 3)
         ]
         
         let timeLabelConstraints = [
@@ -80,7 +85,7 @@ class TopNewsTableViewCell: UITableViewCell {
         
         let titlePosterImageConstraints = [
             titlePosterImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 26),
-            titlePosterImage.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 50),
+            titlePosterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
             titlePosterImage.widthAnchor.constraint(equalToConstant: 100),
             titlePosterImage.heightAnchor.constraint(equalToConstant: 100)
                                                  
@@ -89,6 +94,10 @@ class TopNewsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(timeLabelConstraints)
         NSLayoutConstraint.activate(categoryLabelConstraints)
         NSLayoutConstraint.activate(titlePosterImageConstraints)
+    }
+    
+    public func configure(with model: TitleViewModel) {
+        titleLabel.text = model.title
     }
     
 }
