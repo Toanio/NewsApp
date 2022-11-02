@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class TopNewsTableViewCell: UITableViewCell {
 
@@ -98,6 +99,8 @@ class TopNewsTableViewCell: UITableViewCell {
     
     public func configure(with model: TitleViewModel) {
         titleLabel.text = model.title
+        guard let url = URL(string: model.image_url) else { return }
+        titlePosterImage.sd_setImage(with: url, completed: nil)
     }
     
 }

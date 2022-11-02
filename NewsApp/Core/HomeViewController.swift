@@ -70,7 +70,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         let title = titles[indexPath.row]
-        cell.configure(with: TitleViewModel(title: title.title ?? ""))
+        cell.configure(with: TitleViewModel(title: title.title ?? "", image_url: title.image_url))
         return cell
     }
     
