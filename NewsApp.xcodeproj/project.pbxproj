@@ -78,8 +78,9 @@
 			children = (
 				B00F736F290C2E20005AE2A4 /* Managers */,
 				B00F7370290C2E2D005AE2A4 /* Models */,
-				B00F7375291166E9005AE2A4 /* View */,
 				B00F7376291166F1005AE2A4 /* ViewModel */,
+				B00F7375291166E9005AE2A4 /* View */,
+				B00F736E290C18A6005AE2A4 /* Core */,
 				B00F734B290ACC35005AE2A4 /* AppDelegate.swift */,
 				B00F734D290ACC35005AE2A4 /* SceneDelegate.swift */,
 				B00F7357290ACC3A005AE2A4 /* Assets.xcassets */,
@@ -87,7 +88,6 @@
 				B00F735C290ACC3A005AE2A4 /* Info.plist */,
 				B00F7354290ACC35005AE2A4 /* NewsApp.xcdatamodeld */,
 				B00F7362290ACC87005AE2A4 /* MainTabBarViewController.swift */,
-				B00F736E290C18A6005AE2A4 /* Core */,
 			);
 			path = NewsApp;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -395,7 +395,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

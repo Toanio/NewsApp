@@ -10,4 +10,5 @@ import Foundation
 struct TitleViewModel {
     let title: String
     let image_url: String
+    //let published_at: String
 }

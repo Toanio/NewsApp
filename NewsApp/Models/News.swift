@@ -19,5 +19,6 @@ struct News: Codable {
     let image_url: String
     let published_at: String
 }
+//TODO: - Разобраться с категориями
 
 
