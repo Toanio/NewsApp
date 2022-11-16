@@ -13,7 +13,7 @@ struct NewsData: Codable {
 
 struct News: Codable {
     let uuid: String
-    let title: String?
+    let title: String
     let description: String
     let url: String
     let image_url: String
