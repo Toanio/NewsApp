@@ -12,15 +12,6 @@ class HomeViewController: UIViewController {
      
     private var titles: [News] = [News]()
     
-    private let covidButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 10, y: 100, width: 400, height: 100))
-        button.setTitle("Covid", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .yellow
-        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        return button
-    }()
-    
     private let topNewsTabel: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(TopNewsTableViewCell.self, forCellReuseIdentifier: TopNewsTableViewCell.identifier)
