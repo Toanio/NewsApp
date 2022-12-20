@@ -17,6 +17,7 @@ class MainTabBarViewController: UITabBarController {
         let vc2 = UINavigationController(rootViewController: SearchViewController())
         let vc3 = UINavigationController(rootViewController: NotificationViewController())
         let vc4 = UINavigationController(rootViewController: StatsViewController())
+        
 
         vc1.tabBarItem.image = UIImage(named: "homeButton")
         vc2.tabBarItem.image = UIImage(named: "searchButton")

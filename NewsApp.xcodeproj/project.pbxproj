@@ -25,6 +25,8 @@
 		B0A6AC9D294C6D8C00321A53 /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A6AC9C294C6D8C00321A53 /* BaseListController.swift */; };
 		B0A6AC9F294C7A9A00321A53 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A6AC9E294C7A9A00321A53 /* NewsCell.swift */; };
 		B0A6ACA2294C7C8D00321A53 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A6ACA1294C7C8D00321A53 /* UIView+Layout.swift */; };
+		B0EFED132951EA01003B91A8 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EFED122951EA01003B91A8 /* HeaderCell.swift */; };
+		B0EFED152951F854003B91A8 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EFED142951F854003B91A8 /* Extension + UIViewController.swift */; };
 		B0FB0CEC2925337400F2EE9A /* CovidBanerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB0CEB2925337400F2EE9A /* CovidBanerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 		B0A6AC9C294C6D8C00321A53 /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
 		B0A6AC9E294C7A9A00321A53 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		B0A6ACA1294C7C8D00321A53 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		B0EFED122951EA01003B91A8 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		B0EFED142951F854003B91A8 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		B0FB0CEB2925337400F2EE9A /* CovidBanerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidBanerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +200,7 @@
 				B00F736C290ADC78005AE2A4 /* TopNewsTableViewCell.swift */,
 				B0FB0CEB2925337400F2EE9A /* CovidBanerView.swift */,
 				B0A6AC9E294C7A9A00321A53 /* NewsCell.swift */,
+				B0EFED122951EA01003B91A8 /* HeaderCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				B0A6ACA1294C7C8D00321A53 /* UIView+Layout.swift */,
+				B0EFED142951F854003B91A8 /* Extension + UIViewController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -289,7 +295,9 @@
 				B00F7365290ACD5F005AE2A4 /* HomeViewController.swift in Sources */,
 				B00F736B290ACF69005AE2A4 /* StatsViewController.swift in Sources */,
 				B00F737229116026005AE2A4 /* APICaller.swift in Sources */,
+				B0EFED132951EA01003B91A8 /* HeaderCell.swift in Sources */,
 				B00F7363290ACC87005AE2A4 /* MainTabBarViewController.swift in Sources */,
+				B0EFED152951F854003B91A8 /* Extension + UIViewController.swift in Sources */,
 				B0A6AC9D294C6D8C00321A53 /* BaseListController.swift in Sources */,
 				B00F7369290ACF51005AE2A4 /* NotificationViewController.swift in Sources */,
 				B00F73742911609F005AE2A4 /* NewsData.swift in Sources */,

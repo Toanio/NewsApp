@@ -10,14 +10,22 @@ import SDWebImage
 
 class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout {
     let cellId = "cellId"
+    let headerID = "headerID"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
         
         collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId )
+        collectionView.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
         
         fetchData()
-        
+    }
+    
+    private func setupViews() {
+        createCustomNavigationBar()
+        let customTitleView = createCustomTitleView(title: "NEWS", logoImage1: "mainLogo")
+        navigationItem.titleView = customTitleView
     }
     
     var newsResult = [News]()
@@ -51,6 +59,15 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width, height: 100)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath)
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: 100, height: 200)
     }
    
 }
