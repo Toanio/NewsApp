@@ -6,77 +6,51 @@
 //
 
 import UIKit
+import SDWebImage
 
-class HomeViewController: UIViewController {
-
-     
-    private var titles: [News] = [News]()
-    
-    private let topNewsTabel: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.register(TopNewsTableViewCell.self, forCellReuseIdentifier: TopNewsTableViewCell.identifier)
-        //table.backgroundColor = .white
-        return table
-    }()
+class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout {
+    let cellId = "cellId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        createNavBar()
-        view.addSubview(topNewsTabel)
-        topNewsTabel.delegate = self
-        topNewsTabel.dataSource = self
         
-        fetchNews()
+        collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId )
+        
+        fetchData()
+        
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        topNewsTabel.frame = view.bounds
-    }
+    var newsResult = [News]()
     
-    private func createNavBar() {
-        var image = UIImage(named: "mainLogo")
-        image = image?.withRenderingMode(.alwaysOriginal)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
-        navigationItem.title = "NEWS"
-        //TODO: - Сделать Title
-    
-    }
-    
-    private func fetchNews() {
-        APICaller().getTopNews { results in
-            switch results {
-            case .success(let titles):
-                self.titles = titles
-                DispatchQueue.main.async {
-                    self.topNewsTabel.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-                
+    private func fetchData() {
+        APICaller.shared.fetchTopNews { result, error in
+            if let error = error {
+                print("Failed to fetch app", error)
+                return
+            }
+            self.newsResult = result
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
         }
     }
+    
 
-}
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return newsResult.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TopNewsTableViewCell.identifier) as? TopNewsTableViewCell else {
-            return UITableViewCell()
-        }
-        let title = titles[indexPath.row]
-        cell.configure(with: TitleViewModel(title: title.title, image_url: title.image_url))
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NewsCell
+        let result = newsResult[indexPath.item]
+        cell.nameLabel.text = result.title
+        cell.imageView.sd_setImage(with: URL(string: result.image_url))
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.frame.width, height: 100)
     }
-    
-    
+   
 }

@@ -97,12 +97,5 @@ class TopNewsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate(titlePosterImageConstraints)
     }
     
-    public func configure(with model: TitleViewModel) {
-        titleLabel.text = model.title
-        guard let url = URL(string: model.image_url) else { return }
-        titlePosterImage.sd_setImage(with: url, completed: nil)
-        //TODO: - Разобраться с отображением времени
-        //timeLabel.text = model.published_at
-    }
     
 }

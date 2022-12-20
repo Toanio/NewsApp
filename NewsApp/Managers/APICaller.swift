@@ -19,6 +19,7 @@ class APICaller {
     
     static let shared = APICaller()
     
+    //Сделан с использованием Result + Complition
     func getTopNews(complition: @escaping (Result<[News], Error>)-> Void) {
         
         guard let url = URL(string: "\(Constants.base_URL)top?api_token=\(Constants.API_KEY)&locale=us&limit=5") else {
@@ -40,4 +41,26 @@ class APICaller {
         task.resume()
                 
     }
+    
+    func fetchTopNews(complition: @escaping ([News], Error?) -> ()) {
+        guard let url = URL(string: "\(APICaller.Constants.base_URL)top?api_token=\(APICaller.Constants.API_KEY)&locale=us&limit=5") else { return }
+
+        URLSession.shared.dataTask(with: url) { data, _, err in
+            if let err = err {
+                print("Failed to fetch apps", err)
+                complition([], nil)
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                complition(searchResult.data, nil)
+            } catch let jsonErr{
+                print("Failed to decode json", jsonErr)
+                complition([], jsonErr)
+            }
+        }.resume()
+    }
 }
+    
+
