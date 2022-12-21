@@ -16,12 +16,17 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
         super.viewDidLoad()
         setupViews()
         
+        
         collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId )
-        collectionView.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
+        collectionView.register(HeaderCovidBannerButton.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
+        
         
         fetchData()
     }
     
+    @objc private func handleTest() {
+        print("Hey!")
+    }
     private func setupViews() {
         createCustomNavigationBar()
         let customTitleView = createCustomTitleView(title: "NEWS", logoImage1: "mainLogo")
@@ -67,7 +72,7 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 100, height: 200)
+        return CGSize(width: view.frame.width, height: 140)
     }
    
 }
