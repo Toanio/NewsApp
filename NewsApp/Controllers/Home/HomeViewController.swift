@@ -17,9 +17,9 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
         setupViews()
         
         
-        collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId )
+        collectionView.register(NewsBigCell.self, forCellWithReuseIdentifier: cellId )
         collectionView.register(HeaderCovidBannerButton.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
-        
+        collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId )
         
         fetchData()
     }
@@ -56,9 +56,8 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NewsCell
-        let result = newsResult[indexPath.item]
-        cell.nameLabel.text = result.title
-        cell.imageView.sd_setImage(with: URL(string: result.image_url))
+        cell.newsData = newsResult[indexPath.item]
+        
         return cell
     }
     
