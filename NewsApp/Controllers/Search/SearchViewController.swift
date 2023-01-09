@@ -6,52 +6,135 @@
 //
 
 import UIKit
+import SnapKit
 
-class SearchViewController: UIViewController {
+
+class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayout{
 
     
-    private let searchController: UISearchController = {
-        let controller = UISearchController()
-        controller.searchBar.placeholder = "Search"
-        controller.searchBar.searchBarStyle = .default
-        return controller
-        
+    let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search"
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        return searchBar
     }()
     
     private let segmentControll: UISegmentedControl = {
-        
         let items = ["Latest", "Indonesia", "Technology", "World"]
         let segment = UISegmentedControl(items: items)
-        segment.frame = CGRect(x: 10, y: 150, width: 400, height: 30)
         segment.selectedSegmentIndex = 0
-        segment.addTarget(self, action: #selector(changeSegment( _:)), for: .valueChanged)
+        segment.translatesAutoresizingMaskIntoConstraints = false
+        segment.addTarget(self, action: #selector(changeSegment(_:)), for: .valueChanged)
         return segment
     }()
     
-    let textLabel = UILabel(frame: CGRect(x: 30, y: 500, width: 400, height: 200))
+    let labelTest: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .red
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    let headerId = "headerId"
+    let cellId = "cellId"
+    
+    var newsResult = [News]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.searchController = searchController
+        
+        
+        setupHeaderViews()
+        
+        collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId)
+        
+        
+        
+        view.addSubview(searchBar)
         view.addSubview(segmentControll)
-        view.addSubview(textLabel)
-
+        setupConstraints()
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return newsResult.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NewsCell
+        cell.newsData = newsResult[indexPath.item]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.frame.width, height: 100)
+    }
+    private func setupConstraints() {
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(0)
+            make.left.equalTo(view).inset(0)
+            make.size.equalTo(CGSize(width: view.frame.width, height: 50))
+        }
+        
+        segmentControll.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: view.frame.width, height: 30))
+            make.top.equalTo(searchBar.snp_bottomMargin).inset(-8)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(segmentControll.snp_bottomMargin).inset(-5)
+            make.size.equalTo(CGSize(width: view.frame.width, height: view.frame.height - 100))
+        }
+        
+        
         
     }
     
+    private func setupHeaderViews() {
+        createCustomNavigationBar()
+        let customTitleView = createCustomTitleView(title: "Headlines", logoImage1: "mainLogo")
+        navigationItem.titleView = customTitleView
+    }
+
+    var textLabel = UILabel()
     @objc func changeSegment(_ sender: UISegmentedControl!) {
         switch sender.selectedSegmentIndex {
         case 0:
-            textLabel.text = "Hello"
+            APICaller.shared.fetchTopNews { results, error in
+                if let error = error {
+                    print("Failed to fetch app", error)
+                    return
+                }
+                
+                self.newsResult = results
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+            
         case 1:
-            textLabel.text = "Man"
+            APICaller.shared.fetchHeadlines { results, error in
+                if let error = error {
+                    print("Failed to fetch app", error)
+                    return
+                }
+                
+                self.newsResult = results
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
         case 2:
-            textLabel.text = "Good"
+            newsResult = []
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         case 3:
-            textLabel.text = "Fan"
+            newsResult = []
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         default:
-            textLabel.text = "Alrm!"
+            print("Hello")
         }
     }
     

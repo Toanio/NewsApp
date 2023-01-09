@@ -36,7 +36,7 @@ class NewsCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Top News"
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         return label
     }()
     

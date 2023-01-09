@@ -14,7 +14,7 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        setupHeaderViews()
         
         
         collectionView.register(NewsBigCell.self, forCellWithReuseIdentifier: cellId )
@@ -27,7 +27,7 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
     @objc private func handleTest() {
         print("Hey!")
     }
-    private func setupViews() {
+    private func setupHeaderViews() {
         createCustomNavigationBar()
         let customTitleView = createCustomTitleView(title: "NEWS", logoImage1: "mainLogo")
         navigationItem.titleView = customTitleView
@@ -36,7 +36,7 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
     var newsResult = [News]()
     
     private func fetchData() {
-        APICaller.shared.fetchTopNews { result, error in
+        APICaller.shared.fetchHeadlines { result, error in
             if let error = error {
                 print("Failed to fetch app", error)
                 return

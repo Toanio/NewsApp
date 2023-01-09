@@ -61,6 +61,26 @@ class APICaller {
             }
         }.resume()
     }
+    
+    func fetchHeadlines(complition: @escaping ([News], Error?) -> ()) {
+        guard let url = URL(string: "\(APICaller.Constants.base_URL)all?api_token=\(APICaller.Constants.API_KEY)&categoties=food&locale=us&limit=5&categories=food") else { return }
+
+        URLSession.shared.dataTask(with: url) { data, _, err in
+            if let err = err {
+                print("Failed to fetch apps", err)
+                complition([], nil)
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                complition(searchResult.data, nil)
+            } catch let jsonErr{
+                print("Failed to decode json", jsonErr)
+                complition([], jsonErr)
+            }
+        }.resume()
+    }
 }
     
 
