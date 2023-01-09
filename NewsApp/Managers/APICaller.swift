@@ -62,7 +62,7 @@ class APICaller {
         }.resume()
     }
     
-    func fetchHeadlines(complition: @escaping ([News], Error?) -> ()) {
+    func fetchFoodNews(complition: @escaping ([News], Error?) -> ()) {
         guard let url = URL(string: "\(APICaller.Constants.base_URL)all?api_token=\(APICaller.Constants.API_KEY)&categoties=food&locale=us&limit=5&categories=food") else { return }
 
         URLSession.shared.dataTask(with: url) { data, _, err in
@@ -71,6 +71,69 @@ class APICaller {
                 complition([], nil)
                 return
             }
+            guard let data = data else { return }
+            do {
+                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                complition(searchResult.data, nil)
+            } catch let jsonErr{
+                print("Failed to decode json", jsonErr)
+                complition([], jsonErr)
+            }
+        }.resume()
+    }
+    func fetchScienceNews(complition: @escaping ([News], Error?) -> ()) {
+        guard let url = URL(string: "\(Constants.base_URL)top?api_token=\(Constants.API_KEY)&locale=us&limit=5&categories=science") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error = error {
+                print("Failed to fetch apps", error)
+                complition([], nil)
+                return
+            }
+            
+            guard let data = data else { return }
+            do {
+                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                complition(searchResult.data, nil)
+            } catch let jsonErr{
+                print("Failed to decode json", jsonErr)
+                complition([], jsonErr)
+            }
+        }.resume()
+    }
+    
+    
+    func fetchTravelNews(complition: @escaping ([News], Error?) -> ()) {
+        guard let url = URL(string: "\(Constants.base_URL)top?api_token=\(Constants.API_KEY)&locale=us&limit=5&categories=travel") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error = error {
+                print("Failed to fetch apps", error)
+                complition([], nil)
+                return
+            }
+            
+            guard let data = data else { return }
+            do {
+                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                complition(searchResult.data, nil)
+            } catch let jsonErr{
+                print("Failed to decode json", jsonErr)
+                complition([], jsonErr)
+            }
+        }.resume()
+    }
+    
+    func fetchSportsNews(complition: @escaping ([News], Error?) -> ()) {
+        guard let url = URL(string: "\(Constants.base_URL)top?api_token=\(Constants.API_KEY)&locale=us&limit=5&categories=sports") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error = error {
+                print("Failed to fetch apps", error)
+                complition([], nil)
+                return
+            }
+            
             guard let data = data else { return }
             do {
                 let searchResult = try JSONDecoder().decode(NewsData.self, from: data)

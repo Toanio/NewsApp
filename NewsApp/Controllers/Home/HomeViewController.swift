@@ -46,7 +46,7 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
     var newsResult = [News]()
     
     private func fetchData() {
-        APICaller.shared.fetchHeadlines { result, error in
+        APICaller.shared.fetchTopNews { result, error in
             if let error = error {
                 print("Failed to fetch app", error)
                 return

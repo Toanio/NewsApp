@@ -66,7 +66,7 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
     }
     
     func fetchFirstResult() {
-        APICaller.shared.fetchTopNews { result, error in
+        APICaller.shared.fetchScienceNews { result, error in
             if let error = error {
                 print("Failed to fetch app", error)
                 return
@@ -128,7 +128,7 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
     @objc func changeSegment(_ sender: UISegmentedControl!) {
         switch sender.selectedSegmentIndex {
         case 0:
-            APICaller.shared.fetchTopNews { results, error in
+            APICaller.shared.fetchScienceNews { results, error in
                 if let error = error {
                     print("Failed to fetch app", error)
                     return
@@ -142,7 +142,7 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
             
         case 1:
             self.activityIndicatorView.startAnimating()
-            APICaller.shared.fetchHeadlines { results, error in
+            APICaller.shared.fetchFoodNews { results, error in
                 if let error = error {
                     print("Failed to fetch app", error)
                     return
@@ -156,13 +156,32 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
             }
         case 2:
             self.activityIndicatorView.startAnimating()
-            newsResult = []
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+            APICaller.shared.fetchTravelNews { results, error in
+                if let error = error {
+                    print("Failed to fetch app", error)
+                    return
+                }
+                
+                self.newsResult = results
+                DispatchQueue.main.async {
+                    self.activityIndicatorView.stopAnimating()
+                    self.collectionView.reloadData()
+                }
             }
         case 3:
             self.activityIndicatorView.startAnimating()
-            newsResult = []
+            APICaller.shared.fetchSportsNews { results, error in
+                if let error = error {
+                    print("Failed to fetch app", error)
+                    return
+                }
+                
+                self.newsResult = results
+                DispatchQueue.main.async {
+                    self.activityIndicatorView.stopAnimating()
+                    self.collectionView.reloadData()
+                }
+            }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
