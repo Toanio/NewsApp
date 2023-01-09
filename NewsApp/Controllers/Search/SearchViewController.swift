@@ -11,6 +11,13 @@ import SnapKit
 
 class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayout{
 
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .medium)
+        aiv.color = .black
+        aiv.startAnimating()
+        aiv.hidesWhenStopped = true
+        return aiv
+    }()
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -52,7 +59,24 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
         
         view.addSubview(searchBar)
         view.addSubview(segmentControll)
+        view.addSubview(activityIndicatorView)
         setupConstraints()
+        
+        fetchFirstResult()
+    }
+    
+    func fetchFirstResult() {
+        APICaller.shared.fetchTopNews { result, error in
+            if let error = error {
+                print("Failed to fetch app", error)
+                return
+            }
+            self.newsResult = result
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -85,6 +109,11 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
             make.size.equalTo(CGSize(width: view.frame.width, height: view.frame.height - 100))
         }
         
+        activityIndicatorView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        
         
         
     }
@@ -104,14 +133,15 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
                     print("Failed to fetch app", error)
                     return
                 }
-                
                 self.newsResult = results
                 DispatchQueue.main.async {
+                    self.activityIndicatorView.stopAnimating()
                     self.collectionView.reloadData()
                 }
             }
             
         case 1:
+            self.activityIndicatorView.startAnimating()
             APICaller.shared.fetchHeadlines { results, error in
                 if let error = error {
                     print("Failed to fetch app", error)
@@ -120,15 +150,18 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
                 
                 self.newsResult = results
                 DispatchQueue.main.async {
+                    self.activityIndicatorView.stopAnimating()
                     self.collectionView.reloadData()
                 }
             }
         case 2:
+            self.activityIndicatorView.startAnimating()
             newsResult = []
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         case 3:
+            self.activityIndicatorView.startAnimating()
             newsResult = []
             DispatchQueue.main.async {
                 self.collectionView.reloadData()

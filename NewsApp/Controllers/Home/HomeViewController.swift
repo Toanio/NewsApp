@@ -12,6 +12,14 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
     let cellId = "cellId"
     let headerID = "headerID"
     
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .medium)
+        aiv.color = .black
+        aiv.startAnimating()
+        aiv.hidesWhenStopped = true
+        return aiv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeaderViews()
@@ -20,6 +28,8 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
         collectionView.register(NewsBigCell.self, forCellWithReuseIdentifier: cellId )
         collectionView.register(HeaderCovidBannerButton.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
         collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId )
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.centerInSuperview()
         
         fetchData()
     }
@@ -43,6 +53,7 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
             }
             self.newsResult = result
             DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
                 self.collectionView.reloadData()
             }
         }
