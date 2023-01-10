@@ -27,7 +27,7 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
     }()
     
     private let segmentControll: UISegmentedControl = {
-        let items = ["Latest", "Indonesia", "Technology", "World"]
+        let items = ["Science", "Food", "Travel", "Sports"]
         let segment = UISegmentedControl(items: items)
         segment.selectedSegmentIndex = 0
         segment.translatesAutoresizingMaskIntoConstraints = false
