@@ -16,9 +16,12 @@ struct News: Decodable {
     let title: String
     let description: String
     let url: String
-    let image_url: String
-    let published_at: String
+    let imageUrl: String
+    let publishedAt: String
 }
+
+
+
 //TODO: - Разобраться с категориями
 
 

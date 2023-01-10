@@ -53,7 +53,9 @@ class APICaller {
             }
             guard let data = data else { return }
             do {
-                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let searchResult = try decoder.decode(NewsData.self, from: data)
                 complition(searchResult.data, nil)
             } catch let jsonErr{
                 print("Failed to decode json", jsonErr)
@@ -73,7 +75,9 @@ class APICaller {
             }
             guard let data = data else { return }
             do {
-                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let searchResult = try decoder.decode(NewsData.self, from: data)
                 complition(searchResult.data, nil)
             } catch let jsonErr{
                 print("Failed to decode json", jsonErr)
@@ -93,7 +97,9 @@ class APICaller {
             
             guard let data = data else { return }
             do {
-                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let searchResult = try decoder.decode(NewsData.self, from: data)
                 complition(searchResult.data, nil)
             } catch let jsonErr{
                 print("Failed to decode json", jsonErr)
@@ -115,7 +121,9 @@ class APICaller {
             
             guard let data = data else { return }
             do {
-                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let searchResult = try decoder.decode(NewsData.self, from: data)
                 complition(searchResult.data, nil)
             } catch let jsonErr{
                 print("Failed to decode json", jsonErr)
@@ -136,7 +144,9 @@ class APICaller {
             
             guard let data = data else { return }
             do {
-                let searchResult = try JSONDecoder().decode(NewsData.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let searchResult = try decoder.decode(NewsData.self, from: data)
                 complition(searchResult.data, nil)
             } catch let jsonErr{
                 print("Failed to decode json", jsonErr)

@@ -10,9 +10,9 @@ import UIKit
 class NewsCell: UICollectionViewCell {
     var newsData: News! {
         didSet {
-            imageView.sd_setImage(with: URL(string: newsData.image_url))
+            imageView.sd_setImage(with: URL(string: newsData.imageUrl))
             nameLabel.text = newsData.title
-            timeLabel.text = newsData.published_at
+            timeLabel.text = newsData.publishedAt
         }
     }
     var mode: Mode = .small
