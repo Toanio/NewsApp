@@ -21,7 +21,6 @@ class APICaller {
     
     //Сделан с использованием Result + Complition
     func getTopNews(complition: @escaping (Result<[News], Error>)-> Void) {
-        
         guard let url = URL(string: "\(Constants.base_URL)top?api_token=\(Constants.API_KEY)&locale=us&limit=5") else {
             return 
         }
@@ -39,7 +38,6 @@ class APICaller {
             }
         }
         task.resume()
-                
     }
     
     func fetchTopNews(complition: @escaping ([News], Error?) -> ()) {
@@ -155,5 +153,3 @@ class APICaller {
         }.resume()
     }
 }
-    
-

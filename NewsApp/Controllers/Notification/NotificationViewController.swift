@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class NotificationViewController: UIViewController {
-    
     let labelTest: UILabel = {
         let label = UILabel()
         label.backgroundColor = .red
@@ -28,12 +27,5 @@ class NotificationViewController: UIViewController {
             make.center.equalTo(view)
             make.size.equalTo(CGSize(width: 200, height: 200))
         }
-        
-
-        // Do any additional setup after loading the view.
     }
-    
-
-    
-
 }

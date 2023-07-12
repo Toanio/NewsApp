@@ -22,8 +22,6 @@ class NewsCell: UICollectionViewCell {
         
     }
    
-    
-    
     let imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -47,7 +45,6 @@ class NewsCell: UICollectionViewCell {
         return label
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -65,10 +62,7 @@ class NewsCell: UICollectionViewCell {
         
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

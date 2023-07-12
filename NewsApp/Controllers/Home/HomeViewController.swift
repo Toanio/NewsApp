@@ -24,7 +24,6 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
         super.viewDidLoad()
         setupHeaderViews()
         
-        
         collectionView.register(NewsBigCell.self, forCellWithReuseIdentifier: cellId )
         collectionView.register(HeaderCovidBannerButton.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
         collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId )
@@ -59,8 +58,6 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
         }
     }
     
-
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return newsResult.count
     }
@@ -84,5 +81,4 @@ class HomeViewController: BaseListController, UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 140)
     }
-   
 }

@@ -8,9 +8,7 @@
 import UIKit
 import SnapKit
 
-
 class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayout{
-
     let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .medium)
         aiv.color = .black
@@ -49,19 +47,14 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         setupHeaderViews()
         
         collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId)
-        
-        
-        
+
         view.addSubview(searchBar)
         view.addSubview(segmentControll)
         view.addSubview(activityIndicatorView)
         setupConstraints()
-        
         fetchFirstResult()
     }
     
@@ -113,9 +106,6 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview()
         }
-        
-        
-        
     }
     
     private func setupHeaderViews() {
@@ -189,8 +179,4 @@ class SearchViewController: BaseListController, UICollectionViewDelegateFlowLayo
             print("Hello")
         }
     }
-    
-
-
-
 }

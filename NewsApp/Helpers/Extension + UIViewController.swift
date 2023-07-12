@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIViewController {
- 
     func createCustomNavigationBar() {
         navigationController?.navigationBar.barTintColor = .white
     }
@@ -28,16 +27,6 @@ extension UIViewController {
         logoImage.clipsToBounds = true
         logoImage.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
         view.addSubview(logoImage)
-        
-//        let stackView = UIStackView(arrangedSubviews: [
-//            logoImage,
-//            titleLabel,
-//        ])
-//        stackView.spacing = 4
-//        view.addSubview(stackView)
         return view
-        
-        
     }
-    
 }

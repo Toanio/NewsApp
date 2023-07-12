@@ -9,7 +9,6 @@ import UIKit
 
 class HeaderCovidBannerButton: UICollectionReusableView {
     
-    
     let mainLabel:UILabel = {
         let label = UILabel()
         let attributedText = NSMutableAttributedString(string: "Covid-19 News:", attributes: [.foregroundColor: UIColor.blue])
@@ -26,20 +25,13 @@ class HeaderCovidBannerButton: UICollectionReusableView {
         return label
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        
         backgroundColor = .white
-        
-       
         setupCovidButton()
-
     }
     
      func setupCovidButton(){
-        
         let viewMain = UIView()
         viewMain.layer.borderWidth = 1
         viewMain.layer.cornerRadius = 8
@@ -62,8 +54,5 @@ class HeaderCovidBannerButton: UICollectionReusableView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
+    } 
 }

@@ -8,7 +8,6 @@
 import UIKit
 
 class HeaderView: UICollectionReusableView {
-    
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Search"
@@ -25,7 +24,6 @@ class HeaderView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         backgroundColor = .white
         
         let stackView = UIStackView(arrangedSubviews: [
@@ -35,12 +33,9 @@ class HeaderView: UICollectionReusableView {
         stackView.axis = .vertical
         addSubview(stackView)
         stackView.fillSuperview()
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

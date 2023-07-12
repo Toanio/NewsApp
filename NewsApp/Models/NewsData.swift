@@ -19,9 +19,4 @@ struct News: Decodable {
     let imageUrl: String
     let publishedAt: String
 }
-
-
-
 //TODO: - Разобраться с категориями
-
-
